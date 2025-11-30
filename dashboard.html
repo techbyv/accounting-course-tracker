@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome, Tigers! - AAO</title>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'aao-gold': '#FFD700',
+                        'aao-dark': '#0f0f0f',
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        script: ['"Great Vibes"', 'cursive'],
+                        serif: ['"Playfair Display"', 'serif'],
+                        display: ['"Cinzel"', 'serif'],
+                        elegant: ['"Tangerine"', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@100..900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Cinzel:wght@600;700;900&family=Tangerine:wght@400;400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url('group.jpg');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 200vh;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .background-overlay {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            pointer-events: none;
+        }
+
+        .hero-text-shadow {
+            text-shadow:
+                2px 2px 8px rgba(0, 0, 0, 0.8),
+                0 0 20px rgba(255, 215, 0, 0.8),
+                0 0 40px rgba(255, 215, 0, 0.5),
+                3px 3px 15px rgba(0, 0, 0, 0.9);
+            letter-spacing: 0.05em;
+        }
+
+        .tigers-stylish {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-style: italic;
+            text-shadow:
+                3px 3px 12px rgba(0, 0, 0, 0.9),
+                0 0 25px rgba(255, 215, 0, 0.9),
+                0 0 50px rgba(255, 215, 0, 0.6),
+                2px 2px 4px rgba(0, 0, 0, 0.8);
+            letter-spacing: 0.08em;
+        }
+
+        .button-3d {
+            box-shadow: 0 5px 0 0 #A08500;
+            transition: all 0.15s ease;
+        }
+
+        .button-3d:active {
+            transform: translateY(5px);
+            box-shadow: none;
+            filter: brightness(1.2);
+        }
+
+        .text-press:active {
+            transform: scale(1.05);
+            transition: 0.1s;
+        }
+    </style>
+</head>
+
+<body class="text-white">
+
+    <div class="background-overlay"></div>
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-aao-dark/90 shadow-lg backdrop-blur-sm">
+        <div class="container mx-auto px-4 sm:px-8 py-3 flex justify-between items-center">
+            
+            <div class="flex items-center space-x-2">
+                <img src="seal.jpg" alt="AAO Emblem Seal" class="w-12 h-12 rounded-full border-2 border-aao-gold object-cover">
+            </div>
+
+            <nav class="flex items-center space-x-6 sm:space-x-10 text-lg font-semibold">
+
+                <a href="dashboard.html" class="text-aao-gold hidden md:block hover:text-white hover:scale-110 text-press">
+                    Home
+                </a>
+
+                <a href="myspace.html" class="text-aao-gold hidden md:block hover:text-white hover:scale-110 text-press">
+                    My Space
+                </a>
+
+                <a href="profile.html" class="text-aao-gold hidden md:block hover:text-white hover:scale-110 text-press">
+                    Profile
+                </a>
+
+                <a href="index.html" class="text-aao-gold hidden md:block hover:text-white hover:scale-110 text-press">
+                    Log Out
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="relative z-10 pt-20">
+
+        <!-- HERO -->
+        <section class="min-h-[80vh] flex items-center justify-start p-6 sm:p-12 lg:p-24">
+            <div class="text-left">
+
+                <!-- MOBILE FIXED FONT SIZES -->
+                <h1 class="text-[4rem] sm:text-[9rem] lg:text-[10rem] font-black text-aao-gold hero-text-shadow leading-none tracking-wider font-serif italic">
+                    WELCOME,
+                </h1>
+
+                <h2 class="tigers-stylish text-[6rem] sm:text-[14rem] lg:text-[16rem] text-aao-gold -mt-6 sm:-mt-16 leading-none">
+                    Tigers!
+                </h2>
+
+            </div>
+        </section>
+
+        <!-- WHO ARE WE -->
+        <section class="py-16 px-4 sm:px-8 lg:px-24">
+            <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10 lg:items-center">
+                
+                <div class="relative flex-shrink-0 w-full lg:w-2/5 pt-5 pl-5 sm:pt-8 sm:pl-8">
+                    <div class="absolute inset-0 bg-aao-gold rounded-xl transform -translate-x-3 -translate-y-3 lg:-translate-x-5 lg:-translate-y-5 shadow-2xl"></div>
+
+                    <div class="relative z-10 w-full h-full rounded-lg overflow-hidden shadow-2xl border-2 border-aao-gold bg-aao-dark">
+                        <img src="ppl.png" class="w-full h-full object-cover rounded-lg">
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-3/5 relative pt-5 pl-5 sm:pt-8 sm:pl-8">
+                    <div class="absolute inset-0 bg-aao-gold rounded-xl transform -translate-x-3 -translate-y-3 lg:-translate-x-5 lg:-translate-y-5 shadow-2xl hidden lg:block"></div>
+                    
+                    <div class="relative z-10 p-8 sm:p-10 rounded-xl bg-aao-gold/90 border-2 border-aao-gold text-aao-dark shadow-[0_0_20px_rgba(255,215,0,0.5)]">
+                        
+                        <h3 class="text-2xl sm:text-3xl font-bold mb-6 border-b border-aao-dark pb-2 font-sans">
+                            Who are we?
+                        </h3>
+
+                        <p class="text-sm sm:text-lg leading-relaxed font-sans">
+                            The Accountancy Academic Organization (AAO) has been built by the hands of dedicated individuals who have left a legacy of perseverance, ambition, and camaraderie. Beyond the traditional classroom set-up, the AAO fosters an environment of growth in all other aspects may it be on the spectrum of athletics or creatives. It does so through proactively shaping an inclusive and welcoming student body committed to holistic improvement for the betterment of all tigers in the pack. With an official Facebook page with 3.4k followers and 2.6k likes, as well as 435 followers on Instagram, the AAO continues to build bridges and expand horizons in order to keep the flame ardently bright. For the AAO, true excellence exists not only in academic success but in achieving greatness through weathering storms—together. Embark on an odyssey with a community that is ready to help you ignite your own ardent flame, turning dreams into a reality one tiger at a time.
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="py-24 px-4 sm:px-8 lg:px-24 text-center min-h-[50vh] flex flex-col justify-center items-center">
+            <h3 class="text-4xl sm:text-6xl font-extrabold text-aao-gold hero-text-shadow mb-8 font-sans">
+                Want To Know More?
+            </h3>
+
+            <a href="https://www.facebook.com/share/17tJy433c2/" class="px-10 py-4 text-xl sm:text-2xl font-bold text-aao-dark bg-aao-gold rounded-xl transition duration-300 transform hover:scale-105 button-3d">
+                Click here
+            </a>
+        </section>
+
+        <footer class="h-20 bg-aao-dark w-full"></footer>
+
+    </main>
+</body>
+</html>
+
+

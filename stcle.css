@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #2b2a27;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tiger-wrap {
+    width: 40%;
+}
+
+.tiger {
+    width: 100%;
+    max-width: 420px;
+}
+
+.form-wrap {
+    width: 50%;
+    color: #f4d47a;
+}
+
+.title {
+    font-size: 70px;
+    font-family: "Brush Script MT", cursive;
+    margin-bottom: 20px;
+    color: #f6c546;
+    text-shadow: 3px 3px 5px black;
+}
+
+label {
+    font-size: 20px;
+}
+
+.input {
+    width: 90%;
+    padding: 12px;
+    margin: 10px 0 20px 0;
+    background: rgba(150, 130, 70, 0.4);
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    color: white;
+}
+
+.input:focus {
+    outline: 2px solid #f1d883;
+}
+
+.btn {
+    padding: 12px 40px;
+    background: #d8b55a;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: bold;
+    color: black;
+    transition: .2s;
+}
+
+.btn:hover {
+    background: #f2d37b;
+}

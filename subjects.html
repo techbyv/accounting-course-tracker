@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subjects</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        padding: 40px;
+        font-family: 'Montserrat', sans-serif;
+        background: #e4d3a1;
+    }
+
+    /* BACK BUTTON (added hover like To-Do) */
+    a.back-btn {
+        display:inline-block; 
+        margin-bottom:25px; 
+        text-decoration:none; 
+        color:#000; 
+        font-weight:700; 
+        padding: 10px 18px; 
+        border:3px solid #000; 
+        border-radius:10px; 
+        background-color:#fff8e1;
+        transition: 0.2s ease;
+    }
+    a.back-btn:hover {
+        background: #ffe9a6;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 0 #000;
+    }
+
+    .box {
+        background: #d4af37;
+        border: 4px solid #000;
+        border-radius: 20px;
+        padding: 25px;
+        width: 90%;
+        max-width: 800px;
+        margin: auto;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    }
+
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .section-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 34px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .arrow {
+        font-size: 36px;
+        font-weight: 900;
+    }
+
+    .plus-btn {
+        font-size: 40px;
+        font-weight: 900;
+        cursor: pointer;
+        padding: 0 15px;
+        border-radius: 10px;
+        border: 3px solid #000;
+        background: #fff;
+        transition: 0.2s ease;
+    }
+    .plus-btn:hover { 
+        background: #f5f5f5; 
+        transform: scale(1.12);
+        box-shadow: 0 3px 0 #000;
+    }
+
+    .folder-grid {
+        margin-top: 25px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .folder {
+        width: 100%;
+        height: 160px;
+        background: #f7ce46;
+        border: 3px solid #000;
+        border-radius: 18px;
+        position: relative;
+        cursor: pointer;
+        box-shadow: 0px 5px 0px #b99327;
+        transition: transform 0.22s ease, background 0.22s ease;
+    }
+
+    .folder::before {
+        content: "";
+        position: absolute;
+        top: -22px;
+        left: 10px;
+        width: 110px;
+        height: 35px;
+        background: #ffca2c;
+        border: 3px solid #000;
+        border-bottom: none;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .folder-name {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-weight: 700;
+        font-size: 24px;
+    }
+
+    .folder .delete-btn {
+        position: absolute;
+        top: 8px;
+        right: 10px;
+        font-size: 22px;
+        cursor: pointer;
+        display: none;
+        transition: 0.2s ease;
+        z-index: 5;
+    }
+
+    .folder:hover .delete-btn { display: block; }
+    .folder .delete-btn:hover { transform: scale(1.25); color: #ff4d4d; }
+    .folder:hover { transform: scale(1.05); background: #ffe074; }
+
+    /* MODAL */
+    .modal-bg {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.45);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 200ms ease, visibility 200ms ease;
+        z-index: 999;
+    }
+
+    .modal-bg.show {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .modal-box {
+        background: #fff;
+        padding: 20px 20px;
+        border-radius: 14px;
+        width: 360px;
+        border: 3px solid #000;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    }
+
+    .modal-input-wrap {
+        display: flex;
+        align-items: center;
+    }
+
+    .modal-box input {
+        width: 100%;
+        padding: 14px 18px;
+        border-radius: 24px;
+        border: 3px solid #000;
+        outline: none;
+        font-size: 15px;
+    }
+
+    .modal-box h3 { margin: 0 0 12px 0; font-size: 18px; }
+    .modal-btn {
+        width: 100%;
+        padding: 10px;
+        font-weight: 700;
+        border-radius: 10px;
+        border: 3px solid #000;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: 0.2s ease;
+    }
+
+    .modal-btn:hover { transform: translateY(-2px); }
+
+    .save-btn { background: #d4af37; }
+    .save-btn:hover { background: #c19a2f; }
+
+    .cancel-btn { background: #ccc; }
+    .cancel-btn:hover { background: #bcbcbc; }
+
+    .delete-btn-modal { background: #ff4d4d; color: white; }
+    .delete-btn-modal:hover { background: #e64040; }
+
+</style>
+</head>
+<body>
+
+<a href="myspace.html" class="back-btn">← Back to My Space</a>
+
+<div class="box">
+    <div class="section-header">
+        <div class="section-title">
+            <span class="arrow">▶</span> SUBJECTS
+        </div>
+        <div class="plus-btn" id="openAddBtn">+</div>
+    </div>
+
+    <div class="folder-grid" id="subjectList">
+        <div class="folder" onclick="openSubject('ADVACC')">
+            <span class="delete-btn">🗑</span>
+            <div class="folder-name">ADVACC</div>
+        </div>
+
+        <div class="folder" onclick="openSubject('FINACC')">
+            <span class="delete-btn">🗑</span>
+            <div class="folder-name">FINACC</div>
+        </div>
+
+        <div class="folder" onclick="openSubject('ACCLAW')">
+            <span class="delete-btn">🗑</span>
+            <div class="folder-name">ACCLAW</div>
+        </div>
+
+        <div class="folder" onclick="openSubject('COSMAN')">
+            <span class="delete-btn">🗑</span>
+            <div class="folder-name">COSMAN</div>
+        </div>
+    </div>
+</div>
+
+<!-- ADD MODAL -->
+<div class="modal-bg" id="modalBg">
+    <div class="modal-box">
+        <h3>Add Subject</h3>
+        <div class="modal-input-wrap">
+            <input id="subjectName" type="text" placeholder="Subject name" autocomplete="off">
+        </div>
+        <button class="modal-btn save-btn" id="saveSubjectBtn">Save</button>
+        <button class="modal-btn cancel-btn" id="closeModalBtn">Cancel</button>
+    </div>
+</div>
+
+<!-- DELETE MODAL -->
+<div class="modal-bg" id="deleteModal">
+    <div class="modal-box">
+        <h3>Delete Subject?</h3>
+        <p>This action cannot be undone.</p>
+        <button class="modal-btn delete-btn-modal" id="confirmDeleteBtn">Delete</button>
+        <button class="modal-btn cancel-btn" id="cancelDeleteBtn">Cancel</button>
+    </div>
+</div>
+
+<script>
+const modalBg = document.getElementById('modalBg');
+const deleteBg = document.getElementById('deleteModal');
+const openAddBtn = document.getElementById('openAddBtn');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const saveSubjectBtn = document.getElementById('saveSubjectBtn');
+
+openAddBtn.addEventListener('click', () => {
+    modalBg.classList.add('show');
+    document.getElementById('subjectName').focus();
+});
+
+closeModalBtn.addEventListener('click', () => {
+    modalBg.classList.remove('show');
+});
+
+modalBg.addEventListener('click', (e) => {
+    if (e.target === modalBg) modalBg.classList.remove('show');
+});
+deleteBg.addEventListener('click', (e) => {
+    if (e.target === deleteBg) deleteBg.classList.remove('show');
+});
+
+let subjectToDelete = null;
+
+function openSubject(name) {
+    window.location.href = "subject_page.html?name=" + encodeURIComponent(name);
+}
+
+function addSubject() {
+    let name = document.getElementById("subjectName").value.trim();
+    if (name === "") return;
+
+    createSubjectElement(name);
+    saveSubjects();
+    document.getElementById("subjectName").value = "";
+    modalBg.classList.remove('show');
+}
+
+saveSubjectBtn.addEventListener('click', addSubject);
+
+function createSubjectElement(name) {
+    let folder = document.createElement("div");
+    folder.className = "folder";
+    folder.setAttribute("onclick", `openSubject('${name}')`);
+
+    let folderName = document.createElement("div");
+    folderName.className = "folder-name";
+    folderName.textContent = name;
+
+    let deleteBtn = document.createElement("span");
+    deleteBtn.className = "delete-btn";
+    deleteBtn.innerHTML = "🗑";
+
+    deleteBtn.onclick = function (event) {
+        event.stopPropagation();
+        subjectToDelete = folder;
+        deleteBg.classList.add('show');
+    };
+
+    folder.appendChild(deleteBtn);
+    folder.appendChild(folderName);
+
+    document.getElementById("subjectList").appendChild(folder);
+}
+
+function saveSubjects() {
+    const subjects = [];
+    document.querySelectorAll(".folder-name").forEach(name => {
+        subjects.push(name.textContent);
+    });
+    localStorage.setItem("subjects", JSON.stringify(subjects));
+}
+
+function loadSubjects() {
+    const subjects = JSON.parse(localStorage.getItem("subjects"));
+    if (subjects) {
+        document.getElementById("subjectList").innerHTML = "";
+        subjects.forEach(subject => createSubjectElement(subject));
+    }
+}
+
+document.getElementById("confirmDeleteBtn").onclick = function () {
+    if (subjectToDelete) {
+        subjectToDelete.remove();
+        saveSubjects();
+    }
+    subjectToDelete = null;
+    deleteBg.classList.remove('show');
+};
+
+document.getElementById("cancelDeleteBtn").onclick = function () {
+    subjectToDelete = null;
+    deleteBg.classList.remove('show');
+};
+
+document.addEventListener("DOMContentLoaded", loadSubjects);
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
